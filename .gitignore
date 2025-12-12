@@ -1,0 +1,43 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files
+.env*
+
+# Firebase service account (NEVER COMMIT THIS!)
+serviceAccountKey.json
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# markdown files (except README)
+*.md
+!README.md
+!README*.md
+
+# Admin scripts and other unnecessary files
+
+set-admin-simple.js
+*.bak
+*.tmp
+*.log
+.DS_Store

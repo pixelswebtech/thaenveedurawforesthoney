@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <defs>
+    <linearGradient id="g" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#f6c44f"/>
+      <stop offset="1" stop-color="#b07a15"/>
+    </linearGradient>
+  </defs>
+  <rect width="256" height="256" fill="none"/>
+  <!-- Honey drops -->
+  <g fill="url(#g)">
+    <path d="M40 70c0-14 12-26 26-26 0 14-12 26-26 26z"/>
+    <path d="M80 110c0-14 12-26 26-26 0 14-12 26-26 26z"/>
+    <path d="M40 150c0-14 12-26 26-26 0 14-12 26-26 26z"/>
+    <path d="M120 70c0-14 12-26 26-26 0 14-12 26-26 26z"/>
+    <path d="M160 110c0-14 12-26 26-26 0 14-12 26-26 26z"/>
+    <path d="M120 150c0-14 12-26 26-26 0 14-12 26-26 26z"/>
+  </g>
+  <!-- Simple bee -->
+  <g fill="#c6871a" stroke="#8a5a0d" stroke-width="2">
+    <circle cx="190" cy="120" r="14" fill="#c6871a"/>
+    <ellipse cx="220" cy="130" rx="24" ry="16" fill="#c6871a"/>
+    <path d="M230 120c6-8 18-12 24-8" fill="none"/>
+    <path d="M228 140c10 6 20 10 26 6" fill="none"/>
+    <ellipse cx="215" cy="110" rx="18" ry="8" fill="#e8d7b0"/>
+    <ellipse cx="215" cy="150" rx="18" ry="8" fill="#e8d7b0"/>
+    <line x1="196" y1="120" x2="205" y2="120" stroke="#8a5a0d"/>
+    <line x1="205" y1="120" x2="214" y2="120" stroke="#8a5a0d"/>
+  </g>
+  <text x="128" y="220" text-anchor="middle" font-family="serif" font-size="16" fill="#c6871a">Raw Forest Honey</text>
+</svg>
