@@ -153,14 +153,18 @@ export default function AdminOrders() {
 
   const exportToCSV = () => {
     try {
-      const headers = ["Order ID", "Customer", "Email", "Phone", "Items", "Total", "Status", "Date"]
+      const headers = ["Order ID", "Customer", "Email", "Phone", "Items", "Total (incl. Delivery)", "Delivery", "Status", "Date"]
       const rows = filteredOrders.map(order => [
         order.id || "N/A",
         order.shippingAddress?.fullName || "N/A",
         order.shippingAddress?.email || "N/A",
         order.shippingAddress?.phone || "N/A",
         order.items?.length || 0,
-        order.subtotal?.toFixed(2) || "0.00",
+        (typeof order.total === 'number' 
+          ? order.total 
+          : ((typeof order.subtotal === 'number' ? order.subtotal : 0) + (typeof order.deliveryCharge === 'number' ? order.deliveryCharge : 0))
+        ).toFixed(2),
+        (typeof order.deliveryCharge === 'number' ? order.deliveryCharge.toFixed(2) : "0.00"),
         order.status || "N/A",
         order.createdAt ? new Date(order.createdAt).toLocaleDateString() : "N/A"
       ])
@@ -385,8 +389,13 @@ export default function AdminOrders() {
                   </div>
                   <div className="flex items-center gap-4">
                   <div className="text-right">
-                    <p className="text-sm text-muted-foreground">Total</p>
-                    <p className="text-2xl font-bold">₹{order.subtotal?.toFixed(2)}</p>
+                    <p className="text-sm text-muted-foreground">Total (incl. Delivery)</p>
+                    <p className="text-2xl font-bold">₹{(
+                      typeof order.total === 'number' 
+                        ? order.total 
+                        : ((typeof order.subtotal === 'number' ? order.subtotal : 0) + (typeof order.deliveryCharge === 'number' ? order.deliveryCharge : 0))
+                    ).toFixed(2)}</p>
+                    <p className="text-xs text-muted-foreground">Delivery: ₹{(typeof order.deliveryCharge === 'number' ? order.deliveryCharge.toFixed(2) : '0.00')}</p>
                   </div>
                   <div className="flex flex-col sm:flex-row gap-2">
                     {((order.status || '').toLowerCase() === "placed" || (order.status || '').toLowerCase() === "order placed") && (

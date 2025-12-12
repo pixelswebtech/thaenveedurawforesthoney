@@ -50,7 +50,13 @@ export default function AdminDashboard() {
 
       if (ordersResult.success) {
         const orders = ordersResult.orders
-        const totalRevenue = orders.reduce((sum, order) => sum + (order.subtotal || 0), 0)
+        // Include delivery charges in total revenue
+        const totalRevenue = orders.reduce((sum, order) => {
+          const subtotal = typeof order.subtotal === 'number' ? order.subtotal : 0
+          const delivery = typeof order.deliveryCharge === 'number' ? order.deliveryCharge : 0
+          const total = typeof order.total === 'number' ? order.total : (subtotal + delivery)
+          return sum + total
+        }, 0)
         const pendingOrders = orders.filter(order => order.status === 'placed').length
 
         setStats({
