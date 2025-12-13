@@ -5,13 +5,13 @@ export default function Story() {
         <div className="order-2 md:order-1">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif leading-tight">From Forest Hive to Heart</h2>
           <p className="mt-4 md:mt-6 text-base sm:text-lg text-muted-foreground leading-relaxed">
-            In the deep silence of the forest, where bees hum among wild blossoms, our tribal honey hunters continue an ancient tradition — gathering honey with reverence, courage, and care.
+            In the deep silence of the forest, where bees hum among wild blossoms, our tribal honey hunters continue an ancient tradition gathering honey with reverence, courage, and care.
           </p>
           <p className="mt-4 text-base sm:text-lg text-muted-foreground leading-relaxed">
-            At Thaenveedu, every drop of raw forest honey carries their trust, wisdom, and respect for nature's rhythm. No machines, no chemicals — just the pure essence of the wild, harvested sustainably by hands that know the forest as home.
+            At Thaenveedu, every drop of raw forest honey carries their trust, wisdom, and respect for nature's rhythm. No machines, no chemicals just the pure essence of the wild, harvested sustainably by hands that know the forest as home.
           </p>
           <p className="mt-4 text-base sm:text-lg text-muted-foreground leading-relaxed">
-            Each jar tells a story — of the trees that sheltered the hives, the songs of the honey hunters, and the golden gift they bring to your table — pure, honest, and unforgettable.
+            Each jar tells a story of the trees that sheltered the hives, the songs of the honey hunters, and the golden gift they bring to your table pure, honest, and unforgettable.
           </p>
           <p className="mt-3 text-sm sm:text-base text-muted-foreground italic">
             "இயற்கையின் நம்பிக்கை, மனிதனின் உண்மை"

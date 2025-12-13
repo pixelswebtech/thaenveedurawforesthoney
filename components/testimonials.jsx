@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 const items = [
   { 
     name: "Gabriel Prasana Raj", 
-    text: "The richest honey I have ever tasted—silky, floral, unforgettable. It's become a staple in my kitchen!",
+    text: "The richest honey I have ever tasted silky, floral, unforgettable. It's become a staple in my kitchen!",
     location: "Sevvapettai, Thiruvallur",
     rating: 5
   },
@@ -59,7 +59,7 @@ export default function Testimonials() {
         </blockquote>
         
         <div className="mt-6">
-          <p className="font-semibold text-lg sm:text-xl">— {items[idx].name}</p>
+          <p className="font-semibold text-lg sm:text-xl">{items[idx].name}</p>
           <p className="text-sm text-muted-foreground mt-1">{items[idx].location}</p>
         </div>
       </div>

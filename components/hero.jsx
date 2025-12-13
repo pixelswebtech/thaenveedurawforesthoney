@@ -23,7 +23,7 @@ export default function Hero() {
               <br />
               Honey gathered from deep forest hives by
               <br />
-              tribal hunters - pure nature in its most
+              tribal hunters, pure nature in its most
               <br />
               authentic form.
             </p>

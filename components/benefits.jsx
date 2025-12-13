@@ -1,7 +1,7 @@
 const items = [
   {
     title: "Natural Energy Boost",
-    desc: "A perfect source of clean, sustainable energy. The naturally occurring sugars in raw honey fuel your body while polyphenols help reduce fatigue and oxidative stress — ideal for an active lifestyle.",
+    desc: "A perfect source of clean, sustainable energy. The naturally occurring sugars in raw honey fuel your body while polyphenols help reduce fatigue and oxidative stress ideal for an active lifestyle.",
     icon: "⚡",
   },
   {
@@ -16,7 +16,7 @@ const items = [
   },
   {
     title: "Supports Heart Health",
-    desc: "Wild forest honey, abundant in antioxidants and polyphenols, helps maintain healthy cholesterol and supports smooth blood flow — promoting overall cardiovascular health.",
+    desc: "Wild forest honey, abundant in antioxidants and polyphenols, helps maintain healthy cholesterol and supports smooth blood flow promoting overall cardiovascular health.",
     icon: "❤️",
   },
   {
@@ -32,7 +32,7 @@ export default function Benefits() {
       <div className="text-center mb-10 md:mb-12">
         <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl">Nature's Golden Benefits</h2>
         <p className="mt-4 text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
-          Pure forest honey offers more than sweetness — it's a nutritional powerhouse rich in antioxidants, polyphenols, and nature's healing energy.
+          Pure forest honey offers more than sweetness it's a nutritional powerhouse rich in antioxidants, polyphenols, and nature's healing energy.
         </p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">

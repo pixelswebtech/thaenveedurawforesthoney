@@ -1,7 +1,7 @@
 const features = [
   {
     title: "100% Pure & Raw",
-    description: "Untouched by machines or heat — just pure raw forest honey collected directly from wild hives. Each jar retains the natural enzymes, aroma, and taste of the forest.",
+    description: "Untouched by machines or heat just pure raw forest honey collected directly from wild hives. Each jar retains the natural enzymes, aroma, and taste of the forest.",
     icon: (
       <svg className="w-8 h-8" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
         <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -28,7 +28,7 @@ const features = [
   },
   {
     title: "Local, Traceable & Sustainable",
-    description: "Sourced from untouched forest regions, every jar can be traced back to its tribal honey gatherers and the forest it came from — ensuring transparency and trust in every spoonful.",
+    description: "Sourced from untouched forest regions, every jar can be traced back to its tribal honey gatherers and the forest it came from ensuring transparency and trust in every spoonful.",
     icon: (
       <svg className="w-8 h-8" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
         <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
@@ -75,7 +75,7 @@ export default function WhyChooseUs() {
       
       <div className="mt-12 md:mt-16 text-center">
         <p className="text-base md:text-lg text-muted-foreground italic">
-          From the wild heart of the forest — pure, raw, and true.
+          From the wild heart of the forest pure, raw, and true.
         </p>
       </div>
     </section>
