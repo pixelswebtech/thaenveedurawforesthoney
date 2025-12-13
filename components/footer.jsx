@@ -21,7 +21,7 @@ export default function Footer() {
             </p>
             <div className="mt-6 flex gap-4">
               <a 
-                href="https://www.facebook.com/profile.php?id=100069191221859#" 
+                href="https://www.facebook.com/share/17w1AApbEW/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="p-2 rounded-full hover:bg-primary/10 transition-colors"

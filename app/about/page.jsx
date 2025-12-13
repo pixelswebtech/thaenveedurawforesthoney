@@ -38,7 +38,7 @@ export default function AboutPage() {
           </ul>
           <h3 className="mt-8 font-serif text-xl">Our Connection with the Forest</h3>
           <p className="mt-3 text-sm sm:text-base leading-relaxed text-muted-foreground">
-            The forests give us more than honey; they teach us patience, balance, and gratitude. By supporting Thaenveedu, you're helping preserve not just a product, but a way of life—the wisdom of indigenous honey hunters and the wild harmony they protect.
+            The forests give us more than honey; they teach us patience, balance, and gratitude. By supporting Thaenveedu, you're helping preserve not just a product, but a way of life the wisdom of indigenous honey hunters and the wild harmony they protect.
           </p>
           <blockquote className="mt-6 italic text-muted-foreground">
             "From the wild heart of the forest, to the warmth of your home, every drop of Thaenveedu tells a story of trust."
