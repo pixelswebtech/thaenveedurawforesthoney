@@ -10,9 +10,7 @@ export default function Footer() {
           {/* About Section */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-3 mb-4">
-              <div className="h-10 w-10 rounded-lg bg-primary flex items-center justify-center">
-                <span className="text-2xl text-primary-foreground">🐝</span>
-              </div>
+              <img src="/logo.png" alt="Thaenveedu logo" className="h-10 w-10" />
               <h3 className="text-xl font-serif font-semibold">Thaenveedu</h3>
             </div>
             <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-md">
@@ -90,10 +88,13 @@ thaenveedu@gmail.com
                 <svg className="w-5 h-5 mt-0.5 flex-shrink-0" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
                   <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
                 </svg>
-                <a href="tel:+1-555-123-4567" className="hover:text-primary transition-colors">
-                  +91 91760 26892‬
+                
+                <a href="tel:+919003003702" className="hover:text-primary transition-colors">
+                +919003003702
 
                 </a>
+                
+                  
               </li>
               <li className="flex items-start gap-2">
                 <svg className="w-5 h-5 mt-0.5 flex-shrink-0" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">

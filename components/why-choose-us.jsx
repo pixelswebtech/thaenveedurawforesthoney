@@ -75,7 +75,7 @@ export default function WhyChooseUs() {
       
       <div className="mt-12 md:mt-16 text-center">
         <p className="text-base md:text-lg text-muted-foreground italic">
-          From the wild heart of the forest pure, raw, and true.
+          From the wild heart of the forest pure, raw, and true. <br />அருளும் நம்பிக்கையும் நம் தேனின் இனிமை.
         </p>
       </div>
     </section>

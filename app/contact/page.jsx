@@ -7,6 +7,7 @@ import LoginModal from "../../components/login-modal"
 import { UIProvider } from "../../components/cart-ui-context"
 
 export default function ContactPage() {
+  const whatsappNumber = "919003003702"
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -18,8 +19,10 @@ export default function ContactPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // Handle form submission here
-    console.log("Form submitted:", formData)
+    const { name, email, phone, subject, message } = formData
+    const text = `Hello, I'm ${name}.\nEmail: ${email}\nPhone: ${phone || "N/A"}\nSubject: ${subject}\nMessage: ${message}`
+    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`
+    window.open(url, "_blank")
     setSubmitted(true)
     setTimeout(() => {
       setSubmitted(false)
@@ -195,6 +198,10 @@ export default function ContactPage() {
                       <a href="tel: +91 91760 26892" className="hover:text-primary transition-colors">
                         +91 91760 26892‬
 
+                      </a>
+                      <br />
+                      <a href="tel:+919003003702" className="hover:text-primary transition-colors">
+                        +91 90030 03702
                       </a>
                       <br />
                       <span className="text-sm">Mon-Fri, 9am-6pm PST</span>
