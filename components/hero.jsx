@@ -5,7 +5,7 @@ export default function Hero() {
     <section className="relative">
       <div className="relative h-[85vh] md:h-[100vh] w-full overflow-hidden">
         <img
-          src="/authentic-photo-of-honey-drizzle-macro-golden-ligh.jpg"
+          src="/home.png"
           alt="Golden honey cascading from a wooden dipper"
           className="h-full w-full object-cover"
         />
