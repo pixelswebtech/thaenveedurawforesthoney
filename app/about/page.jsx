@@ -51,7 +51,7 @@ export default function AboutPage() {
         <div>
           <div className="relative rounded-2xl overflow-hidden border bg-card">
             <Image 
-              src="/about_bee.png" 
+              src="/about.png" 
               alt="Tribal honey hunter and forest honey imagery"
               width={1200}
               height={900}

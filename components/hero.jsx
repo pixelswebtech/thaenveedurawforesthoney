@@ -3,7 +3,7 @@ import Link from "next/link"
 export default function Hero() {
   return (
     <section className="relative">
-      <div className="relative h-[85vh] md:h-[100vh] w-full overflow-hidden">
+      <div className="relative h-[85vh] md:h-[200vh] w-full overflow-hidden">
         <img
           src="/home.png"
           alt="Golden honey cascading from a wooden dipper"
@@ -12,13 +12,13 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/30 to-background/10" />
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 text-center">
-             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif text-balance leading-tight">
+             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif text-balance leading-tight text-white mb-4">
               Thaenveedu | Forest Honey
             </h1>
-            <h1 className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-serif text-balance leading-tight">
+            <h1 className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-serif text-balance leading-tight text-primary">
               Pure, Raw, & Unforgettable
             </h1>
-            <p className="mt-4 md:mt-6 text-base sm:text-lg md:text-xl lg:text-2xl text-pretty max-w-3xl mx-auto">
+            <p className="mt-4 md:mt-6 text-base sm:text-lg md:text-xl lg:text-2xl text-pretty max-w-3xl mx-auto text-white">
               Wild. Sacred. Real.
               <br />
               Honey gathered from deep forest hives by
