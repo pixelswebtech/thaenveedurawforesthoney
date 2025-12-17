@@ -9,7 +9,6 @@ export default function Hero() {
           alt="Golden honey cascading from a wooden dipper"
           className="h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/30 to-background/10" />
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 text-center">
              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif text-balance leading-tight text-white mb-4">
