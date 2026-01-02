@@ -61,6 +61,63 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      {/* Gallery Section */}
+      <section className="mt-16 md:mt-24">
+        <div className="text-center mb-12">
+          <h2 className="font-serif text-3xl md:text-4xl mb-4">Our Story in Pictures</h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            From the forest to the hands of tribal hunters, witness the journey of pure, raw honey
+          </p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          {/* Image 1 */}
+          <div className="group relative rounded-2xl overflow-hidden border bg-card shadow-sm hover:shadow-lg transition-shadow duration-300">
+            <div className="aspect-square relative">
+              <Image 
+                src="/about_a.jpg" 
+                alt="Tribal hunter with honeycomb"
+                fill
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+              <p className="text-white p-4 text-sm font-medium">Forest Wisdom</p>
+            </div>
+          </div>
+
+          {/* Image 2 */}
+          <div className="group relative rounded-2xl overflow-hidden border bg-card shadow-sm hover:shadow-lg transition-shadow duration-300">
+            <div className="aspect-square relative">
+              <Image 
+                src="/about_b.jpg" 
+                alt="Pure honey in jar"
+                fill
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+              <p className="text-white p-4 text-sm font-medium">Pure Nature</p>
+            </div>
+          </div>
+
+          {/* Image 3 */}
+          <div className="group relative rounded-2xl overflow-hidden border bg-card shadow-sm hover:shadow-lg transition-shadow duration-300 md:col-span-2">
+            <div className="relative w-full h-96">
+              <Image 
+                src="/about_c.png" 
+                alt="Forest honey hunting expedition"
+                fill
+                className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+              <p className="text-white p-4 text-sm font-medium">Wild Harvest</p>
+            </div>
+          </div>
+        </div>
+      </section>
       </main>
       <Footer />
       <CartDrawer />
