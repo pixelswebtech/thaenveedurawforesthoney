@@ -10,7 +10,7 @@ import LoginModal from "../../components/login-modal"
 import { UIProvider } from "../../components/cart-ui-context"
 
 export default function AdminLogin() {
-  const ADMIN_EMAIL = "adm.thaenveedu@gmail.com"
+  const ADMIN_EMAIL = "thaenveedu@gmail.com"
   const router = useRouter()
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)

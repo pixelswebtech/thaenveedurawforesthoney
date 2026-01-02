@@ -3,7 +3,7 @@ import Link from "next/link"
 export default function Hero() {
   return (
     <section className="relative">
-      <div className="relative h-[85vh] md:h-[200vh] w-full overflow-hidden">
+      <div className="relative h-[100vh] md:h-[200vh] w-full overflow-hidden">
         <img
           src="/home.png"
           alt="Golden honey cascading from a wooden dipper"
