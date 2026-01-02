@@ -8,7 +8,7 @@ import Link from "next/link"
 import { toast } from "sonner"
 
 export default function AdminProducts() {
-  const ADMIN_EMAIL = "adm.thaenveedu@gmail.com"
+  const ADMIN_EMAIL = "thaenveedu@gmail.com"
   const router = useRouter()
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)

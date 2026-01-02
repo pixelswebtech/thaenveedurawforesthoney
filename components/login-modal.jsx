@@ -45,10 +45,14 @@ export default function LoginModal() {
     setError("")
     try {
       const provider = new GoogleAuthProvider()
-      await signInWithPopup(auth, provider)
+      const result = await signInWithPopup(auth, provider)
       closeAuth()
-      // Redirect to shop page after successful login
-      window.location.href = '/shop'
+      // Check if email is admin email
+      if (result.user.email === 'thaenveedu@gmail.com') {
+        window.location.href = '/admin/dashboard'
+      } else {
+        window.location.href = '/shop'
+      }
     } catch (e) {
       console.error("Google sign-in error:", e)
       if (e.code === 'auth/popup-closed-by-user') {
@@ -142,8 +146,12 @@ export default function LoginModal() {
             return
           }
           closeAuth()
-          // Redirect to shop page after successful login
-          window.location.href = '/shop'
+          // Check if email is admin email
+          if (userCredential.user.email === 'thaenveedu@gmail.com') {
+            window.location.href = '/admin/dashboard'
+          } else {
+            window.location.href = '/shop'
+          }
         } catch (signInError) {
           // If user not found, check if they meant to sign up
           if (signInError.code === 'auth/user-not-found') {

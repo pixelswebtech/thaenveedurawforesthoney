@@ -7,7 +7,7 @@ import { onAuthStateChanged, signOut as firebaseSignOut } from "firebase/auth"
 import { useState, useEffect } from "react"
 
 export default function Navbar() {
-  const ADMIN_EMAIL = "adm.thaenveedu@gmail.com"
+  const ADMIN_EMAIL = "thaenveedu@gmail.com"
   const { toggleCart, openAuth } = useUI()
   const { items } = useCart()
   const count = items.reduce((n, i) => n + i.quantity, 0)
