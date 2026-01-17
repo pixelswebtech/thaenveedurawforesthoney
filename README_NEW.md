@@ -78,8 +78,8 @@ Firebase account
 4. **Set Admin Access**
 
    ```bash
-   # Download service account key from Firebase Console
-   # Save as serviceAccountKey.json in project root
+   # Use environment variables for Firebase Admin (no JSON file)
+   # Use environment variables instead of a JSON file
 
    # Grant admin privileges
    node set-admin-claim.js admin@example.com
@@ -125,7 +125,7 @@ Firebase account
 │   ├── order-service.js          # Order operations
 │   └── security.js               # Security utilities
 ├── .env.local                    # Environment vars (create this)
-├── serviceAccountKey.json        # Firebase admin (create this)
+├── .env.local                    # Firebase admin credentials (server-only)
 └── set-admin-claim.js            # Admin setup script
 ```
 
@@ -179,11 +179,17 @@ Firebase account
 - Project Settings → General → Your apps
 - Copy config to `.env.local`
 
-#### 3. Download Service Account Key
+#### 3. Configure Firebase Admin Environment Variables
 
 - Project Settings → Service Accounts
 - Generate new private key
-- Save as `serviceAccountKey.json`
+Add to `.env.local` (server-only):
+
+```
+FIREBASE_PROJECT_ID=your-project-id
+FIREBASE_CLIENT_EMAIL=firebase-adminsdk-xxxx@your-project-id.iam.gserviceaccount.com
+FIREBASE_PRIVATE_KEY=-----BEGIN PRIVATE KEY-----\nMIIEv...\n-----END PRIVATE KEY-----\n
+```
 
 #### 4. Deploy Security Rules
 
@@ -265,7 +271,7 @@ node set-admin-claim.js email@example.com  # Grant admin access
 
 - [ ] Firestore Security Rules deployed
 - [ ] Environment variables configured
-- [ ] Service account key is secure
+- [ ] Firebase Admin env vars set (.env.local)
 - [ ] Admin users configured
 - [ ] All inputs validated
 - [ ] HTTPS enforced
