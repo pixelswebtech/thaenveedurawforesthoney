@@ -13,8 +13,9 @@ const facts = [
 export default function Honeycomb() {
   const [hover, setHover] = useState(null)
   
-  // Configuration for the circle
-  const radius = 160 // Distance from center
+  // Mobile-aware radius so the circle fits on small screens
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 640
+  const radius = isMobile ? 120 : 160 // Distance from center
   const totalItems = facts.length
 
   return (
@@ -29,7 +30,7 @@ export default function Honeycomb() {
       {/* Container for the rotating circle. 
         We use a square container here to ensure smooth rotation without layout shift.
       */}
-      <div className="relative w-[450px] h-[450px] flex items-center justify-center mx-auto">
+      <div className="relative w-full max-w-[450px] aspect-square flex items-center justify-center mx-auto">
         <div className="absolute inset-0 rotating-circle">
           {facts.map((f, idx) => {
             // Calculate position
