@@ -21,7 +21,7 @@ export default function CartDrawer() {
         <div className="p-4 space-y-4 overflow-auto h-[calc(100%-160px)]">
           {items.length === 0 && <p className="text-muted-foreground">Your cart is empty.</p>}
           {items.map((i) => (
-            <div key={i.id} className="flex items-center gap-3">
+            <div key={`${i.id}:${i.variantId || 'default'}`} className="flex items-center gap-3">
               <div className="h-20 w-20 rounded-md overflow-hidden bg-muted flex-shrink-0">
                 <img
                   src={i.imageUrl || "/placeholder.jpg"}
@@ -34,17 +34,20 @@ export default function CartDrawer() {
                   <p className="font-medium">{i.name}</p>
                   <button
                     className="text-sm text-destructive"
-                    onClick={() => removeItem(i.id)}
+                    onClick={() => removeItem(i.id, i.variantId)}
                     aria-label={`Remove ${i.name}`}
                   >
                     Remove
                   </button>
                 </div>
+                {i.weightLabel && (
+                  <div className="text-xs text-muted-foreground">Weight: {i.weightLabel}</div>
+                )}
                 <div className="mt-2 flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <button
                       className="rounded-md border px-2"
-                      onClick={() => decrement(i.id, 1)}
+                      onClick={() => decrement(i.id, 1, i.variantId)}
                       aria-label={`Decrease ${i.name} quantity`}
                     >
                       −
@@ -52,7 +55,7 @@ export default function CartDrawer() {
                     <span className="min-w-6 text-center">{i.quantity}</span>
                     <button
                       className="rounded-md border px-2"
-                      onClick={() => increment(i.id, 1)}
+                      onClick={() => increment(i.id, 1, i.variantId)}
                       aria-label={`Increase ${i.name} quantity`}
                     >
                       +

@@ -1,22 +1,32 @@
 import admin from 'firebase-admin'
 
+export const runtime = 'nodejs'
+
 let initialized = false
 
 function initializeAdmin() {
   if (initialized) return
-  
-  try {
-    const serviceAccount = require('@/serviceAccountKey.json')
-    
-    if (!admin.apps.length) {
-      admin.initializeApp({
-        credential: admin.credential.cert(serviceAccount)
-      })
-    }
-    initialized = true
-  } catch (error) {
-    console.error('Error initializing admin SDK:', error.message)
+
+  const projectId = process.env.FIREBASE_PROJECT_ID
+  const clientEmail = process.env.FIREBASE_CLIENT_EMAIL
+  const rawKey = process.env.FIREBASE_PRIVATE_KEY
+
+  if (!projectId || !clientEmail || !rawKey) {
+    throw new Error('Missing Firebase admin credentials. Set FIREBASE_PROJECT_ID, FIREBASE_CLIENT_EMAIL, FIREBASE_PRIVATE_KEY in environment.')
   }
+
+  const privateKey = rawKey.replace(/\\n/g, '\n')
+
+  if (!admin.apps.length) {
+    admin.initializeApp({
+      credential: admin.credential.cert({
+        projectId,
+        clientEmail,
+        privateKey,
+      }),
+    })
+  }
+  initialized = true
 }
 
 export async function POST(req) {

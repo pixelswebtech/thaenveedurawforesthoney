@@ -96,6 +96,7 @@ export default function ProductDetailContent({ productId }) {
   const [showReviewForm, setShowReviewForm] = useState(false)
   const [reviewForm, setReviewForm] = useState({ rating: 5, reviewText: "" })
   const [submittingReview, setSubmittingReview] = useState(false)
+  const [variantIdx, setVariantIdx] = useState(0)
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -118,7 +119,8 @@ export default function ProductDetailContent({ productId }) {
             fullDescription: firestoreProduct.fullDescription || firestoreProduct.description,
             weight: firestoreProduct.weight || "12 oz (340g)",
             ingredients: firestoreProduct.ingredients || "100% Pure Raw Honey",
-            origin: firestoreProduct.origin || "Sustainably harvested"
+            origin: firestoreProduct.origin || "Sustainably harvested",
+            variants: Array.isArray(firestoreProduct.variants) ? firestoreProduct.variants : []
           })
           // Load real reviews from Firestore
           const reviewsResult = await getProductReviews(productId)
@@ -201,7 +203,16 @@ export default function ProductDetailContent({ productId }) {
     }
     
     if (product) {
-      addItem(product, quantity)
+      const hasVariants = Array.isArray(product.variants) && product.variants.length > 0
+      const selected = hasVariants ? product.variants[variantIdx] : null
+      const meta = selected
+        ? {
+            variantId: selected.id || `${product.id}-${selected.weightLabel}`,
+            weightLabel: selected.weightLabel,
+            unitPrice: Number(selected.price),
+          }
+        : {}
+      addItem(product, quantity, meta)
       openCart()
       // Reset quantity to 1 after adding
       setQuantity(1)
@@ -306,12 +317,30 @@ export default function ProductDetailContent({ productId }) {
             </span>
           </div>
 
-          <p className="text-3xl font-bold mb-6">₹{product.price.toFixed(2)}</p>
+          <p className="text-3xl font-bold mb-6">₹{(
+            Array.isArray(product.variants) && product.variants.length > 0
+              ? Number(product.variants[variantIdx]?.price || product.price)
+              : product.price
+          ).toFixed(2)}</p>
 
           <div className="space-y-3 mb-6">
             <div className="flex items-center gap-2 text-sm">
               <span className="font-medium">Weight:</span>
-              <span className="text-muted-foreground">{product.weight}</span>
+              {Array.isArray(product.variants) && product.variants.length > 0 ? (
+                <div className="flex flex-wrap gap-2">
+                  {product.variants.map((v, i) => (
+                    <button
+                      key={v.id || i}
+                      onClick={() => setVariantIdx(i)}
+                      className={`px-2 py-1 rounded border text-xs ${i === variantIdx ? 'bg-primary text-primary-foreground border-primary' : 'hover:bg-secondary'}`}
+                    >
+                      {v.weightLabel}
+                    </button>
+                  ))}
+                </div>
+              ) : (
+                <span className="text-muted-foreground">{product.weight}</span>
+              )}
             </div>
             <div className="flex items-center gap-2 text-sm">
               <span className="font-medium">Origin:</span>
@@ -360,7 +389,11 @@ export default function ProductDetailContent({ productId }) {
               onClick={handleAddToCart}
               className="w-full bg-primary text-primary-foreground rounded-md px-6 py-3 font-medium hover:opacity-90 transition-opacity"
             >
-              {currentCartQuantity > 0 ? 'Add More to Cart' : 'Add to Cart'} - ₹{(product.price * quantity).toFixed(2)}
+              {currentCartQuantity > 0 ? 'Add More to Cart' : 'Add to Cart'} - ₹{(
+                (Array.isArray(product.variants) && product.variants.length > 0
+                  ? Number(product.variants[variantIdx]?.price || product.price)
+                  : product.price) * quantity
+              ).toFixed(2)}
             </button>
           </div>
 

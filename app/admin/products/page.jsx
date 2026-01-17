@@ -25,7 +25,8 @@ export default function AdminProducts() {
     imageUrl: "",
     weight: "",
     origin: "",
-    deliveryCharges: {}
+    deliveryCharges: {},
+    variants: [{ weightLabel: "", price: "" }]
   })
 
   useEffect(() => {
@@ -71,6 +72,10 @@ export default function AdminProducts() {
       })
     )
 
+    const cleanedVariants = (Array.isArray(formData.variants) ? formData.variants : [])
+      .map(v => ({ weightLabel: (v.weightLabel || "").trim(), price: parseFloat(v.price) }))
+      .filter(v => v.weightLabel && Number.isFinite(v.price) && v.price >= 0)
+
     const result = await addProduct({
       name: formData.name,
       description: formData.description,
@@ -78,13 +83,14 @@ export default function AdminProducts() {
       imageUrl: formData.imageUrl,
       weight: formData.weight,
       origin: formData.origin,
-      deliveryCharges: sanitizedCharges
+      deliveryCharges: sanitizedCharges,
+      variants: cleanedVariants
     })
 
     if (result.success) {
       setMessage({ type: "success", text: "Product added successfully!" })
       setShowAddModal(false)
-      setFormData({ name: "", description: "", price: "", imageUrl: "", weight: "", origin: "", deliveryCharges: {} })
+      setFormData({ name: "", description: "", price: "", imageUrl: "", weight: "", origin: "", deliveryCharges: {}, variants: [{ weightLabel: "", price: "" }] })
       await loadProducts()
     } else {
       setMessage({ type: "error", text: result.error })
@@ -105,6 +111,10 @@ export default function AdminProducts() {
       })
     )
 
+    const cleanedVariants = (Array.isArray(formData.variants) ? formData.variants : [])
+      .map(v => ({ weightLabel: (v.weightLabel || "").trim(), price: parseFloat(v.price) }))
+      .filter(v => v.weightLabel && Number.isFinite(v.price) && v.price >= 0)
+
     const result = await updateProduct(selectedProduct.id, {
       name: formData.name,
       description: formData.description,
@@ -112,14 +122,15 @@ export default function AdminProducts() {
       imageUrl: formData.imageUrl,
       weight: formData.weight,
       origin: formData.origin,
-      deliveryCharges: sanitizedCharges
+      deliveryCharges: sanitizedCharges,
+      variants: cleanedVariants
     })
 
     if (result.success) {
       setMessage({ type: "success", text: "Product updated successfully!" })
       setShowEditModal(false)
       setSelectedProduct(null)
-      setFormData({ name: "", description: "", price: "", imageUrl: "", weight: "", origin: "", deliveryCharges: {} })
+      setFormData({ name: "", description: "", price: "", imageUrl: "", weight: "", origin: "", deliveryCharges: {}, variants: [{ weightLabel: "", price: "" }] })
       await loadProducts()
     } else {
       setMessage({ type: "error", text: result.error })
@@ -164,7 +175,8 @@ export default function AdminProducts() {
       imageUrl: product.imageUrl,
       weight: product.weight || "",
       origin: product.origin || "",
-      deliveryCharges: product.deliveryCharges || {}
+      deliveryCharges: product.deliveryCharges || {},
+      variants: (product.variants || []).map(v => ({ weightLabel: v.weightLabel || "", price: (v.price ?? "") }))
     })
     setShowEditModal(true)
   }
@@ -369,6 +381,61 @@ export default function AdminProducts() {
                 />
               </div>
               <div>
+                <label className="block text-sm font-medium mb-2">Weight & Price Variants</label>
+                <div className="space-y-2">
+                  {(formData.variants || []).map((v, idx) => (
+                    <div key={idx} className="grid grid-cols-12 gap-2">
+                      <div className="col-span-6">
+                        <input
+                          type="text"
+                          value={v.weightLabel}
+                          onChange={(e) => {
+                            const next = [...formData.variants]
+                            next[idx] = { ...next[idx], weightLabel: e.target.value }
+                            setFormData({ ...formData, variants: next })
+                          }}
+                          className="w-full px-3 py-2 rounded-md border bg-background focus:outline-none focus:ring-2 focus:ring-primary"
+                          placeholder="e.g., 250g"
+                        />
+                      </div>
+                      <div className="col-span-4">
+                        <input
+                          type="number"
+                          step="0.01"
+                          value={v.price}
+                          onChange={(e) => {
+                            const next = [...formData.variants]
+                            next[idx] = { ...next[idx], price: e.target.value }
+                            setFormData({ ...formData, variants: next })
+                          }}
+                          className="w-full px-3 py-2 rounded-md border bg-background focus:outline-none focus:ring-2 focus:ring-primary"
+                          placeholder="Price"
+                        />
+                      </div>
+                      <div className="col-span-2 flex items-center">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const next = (formData.variants || []).filter((_, i) => i !== idx)
+                            setFormData({ ...formData, variants: next.length ? next : [{ weightLabel: "", price: "" }] })
+                          }}
+                          className="w-full rounded-md border px-3 py-2 text-sm hover:bg-secondary"
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setFormData({ ...formData, variants: [...(formData.variants || []), { weightLabel: "", price: "" }] })}
+                  className="mt-2 rounded-md border px-3 py-2 text-sm hover:bg-secondary"
+                >
+                  + Add Variant
+                </button>
+              </div>
+              <div>
                 <label className="block text-sm font-medium mb-2">Delivery Charges per State (₹)</label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {[
@@ -569,7 +636,7 @@ export default function AdminProducts() {
                   type="button"
                   onClick={() => {
                     setShowAddModal(false)
-                    setFormData({ name: "", description: "", price: "", imageUrl: "", weight: "", origin: "", deliveryCharges: {} })
+                    setFormData({ name: "", description: "", price: "", imageUrl: "", weight: "", origin: "", deliveryCharges: {}, variants: [{ weightLabel: "", price: "" }] })
                   }}
                   className="flex-1 border px-4 py-2 rounded-md font-medium hover:bg-secondary transition-colors"
                 >
@@ -648,6 +715,61 @@ export default function AdminProducts() {
                   placeholder="e.g., Sustainably harvested"
                 />
               </div>
+              <div>
+                <label className="block text-sm font-medium mb-2">Weight & Price Variants</label>
+                <div className="space-y-2">
+                  {(formData.variants || []).map((v, idx) => (
+                    <div key={idx} className="grid grid-cols-12 gap-2">
+                      <div className="col-span-6">
+                        <input
+                          type="text"
+                          value={v.weightLabel}
+                          onChange={(e) => {
+                            const next = [...formData.variants]
+                            next[idx] = { ...next[idx], weightLabel: e.target.value }
+                            setFormData({ ...formData, variants: next })
+                          }}
+                          className="w-full px-3 py-2 rounded-md border bg-background focus:outline-none focus:ring-2 focus:ring-primary"
+                          placeholder="e.g., 250g"
+                        />
+                      </div>
+                      <div className="col-span-4">
+                        <input
+                          type="number"
+                          step="0.01"
+                          value={v.price}
+                          onChange={(e) => {
+                            const next = [...formData.variants]
+                            next[idx] = { ...next[idx], price: e.target.value }
+                            setFormData({ ...formData, variants: next })
+                          }}
+                          className="w-full px-3 py-2 rounded-md border bg-background focus:outline-none focus:ring-2 focus:ring-primary"
+                          placeholder="Price"
+                        />
+                      </div>
+                      <div className="col-span-2 flex items-center">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const next = (formData.variants || []).filter((_, i) => i !== idx)
+                            setFormData({ ...formData, variants: next.length ? next : [{ weightLabel: "", price: "" }] })
+                          }}
+                          className="w-full rounded-md border px-3 py-2 text-sm hover:bg-secondary"
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setFormData({ ...formData, variants: [...(formData.variants || []), { weightLabel: "", price: "" }] })}
+                  className="mt-2 rounded-md border px-3 py-2 text-sm hover:bg-secondary"
+                >
+                  + Add Variant
+                </button>
+              </div>
               <div className="flex gap-3 pt-4">
                 <button
                   type="submit"
@@ -661,7 +783,7 @@ export default function AdminProducts() {
                   onClick={() => {
                     setShowEditModal(false)
                     setSelectedProduct(null)
-                    setFormData({ name: "", description: "", price: "", imageUrl: "", weight: "", origin: "", deliveryCharges: {} })
+                    setFormData({ name: "", description: "", price: "", imageUrl: "", weight: "", origin: "", deliveryCharges: {}, variants: [{ weightLabel: "", price: "" }] })
                   }}
                   className="flex-1 border px-4 py-2 rounded-md font-medium hover:bg-secondary transition-colors"
                 >
