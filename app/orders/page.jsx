@@ -17,6 +17,7 @@ export default function OrdersPage() {
   const [user, setUser] = useState(null)
   const [orders, setOrders] = useState([])
   const [loading, setLoading] = useState(true)
+  const [loadError, setLoadError] = useState("")
   const [reviewedProducts, setReviewedProducts] = useState(new Set())
 
   useEffect(() => {
@@ -32,6 +33,7 @@ export default function OrdersPage() {
       const result = await getUserOrders(currentUser.uid)
       if (result.success) {
         setOrders(result.orders)
+        setLoadError("")
         
         // Check which products have been reviewed
         const reviewed = new Set()
@@ -46,6 +48,9 @@ export default function OrdersPage() {
           }
         }
         setReviewedProducts(reviewed)
+      } else {
+        console.error("Failed to fetch user orders:", result.error)
+        setLoadError(result.error || "Failed to load orders")
       }
       setLoading(false)
     })
@@ -85,6 +90,12 @@ export default function OrdersPage() {
           <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl">My Orders</h1>
           <p className="mt-2 text-muted-foreground">Track and view your order history</p>
         </div>
+
+        {loadError && (
+          <div className="mb-6 rounded-md bg-destructive/10 border border-destructive/20 p-4 text-destructive">
+            {loadError}
+          </div>
+        )}
 
         {loading ? (
           <div className="flex justify-center items-center py-20">
