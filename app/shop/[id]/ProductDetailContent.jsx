@@ -407,9 +407,6 @@ export default function ProductDetailContent({ productId }) {
             <p className="flex items-center gap-2">
               <span className="text-green-600">✓</span> Sustainably harvested
             </p>
-            <p className="flex items-center gap-2">
-              <span className="text-green-600">✓</span> Free shipping on orders over $50
-            </p>
           </div>
         </div>
       </div>
